@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  hospital:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "Doronin_206"
+      POSTGRES_USER: "Doronin_206"
+      POSTGRES_PASSWORD: "Doronin_206"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/db_hospital.sql:/docker-entrypoint-initdb.d/db_hospital.sql
+      - ./data_hospital:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  library:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "Doronin_206"
+      POSTGRES_USER: "Doronin_206"
+      POSTGRES_PASSWORD: "Doronin_206"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/db_library.sql:/docker-entrypoint-initdb.d/db_library.sql
+      - ./data_library:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+  station:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "Doronin_206"
+      POSTGRES_USER: "Doronin_206"
+      POSTGRES_PASSWORD: "Doronin_206"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/db_station.sql:/docker-entrypoint-initdb.d/db_station.sql
+      - ./data_station:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
